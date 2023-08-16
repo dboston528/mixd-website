@@ -1,4 +1,4 @@
 // `app/page.tsx` is the UI for the `/` URL
 export default function Page() {
-    return <h1>Hello, Contact Page</h1>
+    return <h1>This is the contact page</h1>
   }
