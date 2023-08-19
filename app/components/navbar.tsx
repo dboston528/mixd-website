@@ -8,12 +8,11 @@ const navbar = () => {
         href="/"
       >
         <img
-          alt="MIXD Logo"
-          // className="mr-3 h-6 sm:h-9"
-          src="/next.svg"
-          width={102}
+            alt="MIXD Logo"
+        //  className="mr-3 h-6 sm:h-9"
+            src="/next.svg"
+            width={102}
             height={29}
-            href="/"
         />
         
       </Navbar.Brand>
