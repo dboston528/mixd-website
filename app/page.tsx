@@ -2,38 +2,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from 'flowbite-react';
+import Footer from '../app/components/footer'
 
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col  justify-between">
-      {/* <nav className=' bg-gray-800'>
-        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-          <Link href={"/"} className='flex items-center'><Image
-            className="relative "
-            src="/next.svg"
-            alt="mixd Logo"
-            width={120}
-            height={25}
-            priority
-          /></Link>
-          <button data-collapse-toggel="navbar-default" type="button" className='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600' aria-controls="navbar-default" aria-expanded="false" >
-            <span className='sr-only'>Open main menu</span>
-          </button>
-          <Link className='block py-2 pl-3 pr-4' href={"/contact"}>Contact Us</Link> 
-          <Link className='block py-2 pl-3 pr-4' href={"/pricing"}>Pricing </Link>
-          <Link className='block py-2 pl-3 pr-4' href={"/services"}>Services</Link>
-        </div>
-      </nav> */}
-
-
-{/* BELOW IS FLOWBITE NAVBAR */}
-
-
-
-
-      {/* flowbite navbar test */}
-
       <Navbar>
       <Navbar.Brand
         // as={{
@@ -44,11 +18,11 @@ export default function Home() {
         // href="https://flowbite-react.com"
       >
         <img
-          alt="Flowbite React Logo"
+          alt="MIXD Logo"
           // className="mr-3 h-6 sm:h-9"
           src="/next.svg"
-          width={68.6}
-            height={14.3}
+          width={102}
+          height={29}
         />
         
       </Navbar.Brand>
@@ -89,7 +63,7 @@ export default function Home() {
 
 
       </Navbar>
-        
+        <Footer></Footer>
     </main>
   )
 }
