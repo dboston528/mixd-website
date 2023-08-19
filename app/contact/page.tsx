@@ -1,11 +1,18 @@
 'use client'
 import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 // `app/page.tsx` is the UI for the `/` URL
 export default function Page() {
     return (
     <div>
       <Navbar></Navbar>
-      <h1>This is the contact page</h1>
+      
+      <h1 className="pt-5 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Contact Us</h1>
+      
+      <div className="place-items-end">
+      <iframe  src="https://mixdentertainmentgroup.lumify.app/widget/contact-form/afa406af-a209-4964-9568-b0b2e1fdf52b/live"  ></iframe>
+      </div>
+      <Footer></Footer>
     </div>)
     
   }
