@@ -9,8 +9,8 @@ export default function Page() {
       
       <h1 className="pt-5 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Contact Us</h1>
       
-      <div className="place-items-end">
-      <iframe  src="https://mixdentertainmentgroup.lumify.app/widget/contact-form/afa406af-a209-4964-9568-b0b2e1fdf52b/live"  ></iframe>
+      <div className="pl-20 place-content-center">
+      <iframe  src="https://mixdentertainmentgroup.lumify.app/widget/contact-form/afa406af-a209-4964-9568-b0b2e1fdf52b/live" height={700} width={500} ></iframe>
       </div>
       <Footer></Footer>
     </div>)
