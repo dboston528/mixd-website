@@ -1,12 +1,16 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import { Navbar } from 'flowbite-react';
+import { Navbar, DarkThemeToggle, Flowbite } from 'flowbite-react';
 import Footer from '../app/components/footer';
+import Test from './components/testimonial';
+import { Card } from 'flowbite-react';
 
-
-export default function Home() {
+ 
+export default function Home() {  
   return (
+
+  
     <main className="flex  flex-col  justify-between">
       
       <Navbar>
@@ -57,8 +61,10 @@ export default function Home() {
   </svg>
 </a>
 </div>
+  <Test/>
 
         <Footer></Footer>
     </main>
+
   )
 }
