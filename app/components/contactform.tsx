@@ -5,10 +5,10 @@ import { Button, Label, TextInput } from 'flowbite-react';
 
 const contactform = () => {
   return (
-    <form className="flex max-w-md flex-col gap-4">
+    <form className="flex max-w-md flex-col gap-4" action="https://mixdchicago.lumify.app/widget/contact-form/9aa1a8aa-ff9a-4564-97cd-efaa0da89cbc/live" method="POST">
     <div>
       <div className="mb-2 block">
-        <Label htmlFor="base" value="Your name*" />
+        <Label htmlFor="contact|name" value="Your name*"/>
       </div>
       <TextInput id="email1" type="text"  required />
     </div>
