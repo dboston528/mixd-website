@@ -1,7 +1,7 @@
 'use client';
 
 import { Footer } from 'flowbite-react';
-import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { BsFacebook, BsInstagram } from 'react-icons/bs';
 const footer = () => {
   return (
     <Footer container>
@@ -58,7 +58,7 @@ const footer = () => {
         <Footer.Copyright
           by="MIXD Entertainment Group"
           href="#"
-          year={2023}
+          year={2024}
         />
         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
           <Footer.Icon
