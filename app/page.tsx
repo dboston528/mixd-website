@@ -63,32 +63,30 @@ export default function Home() {
 </div>
 
 <div className='text-center'>
-<h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white p-10"> Our Services</h1>
+<h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-black
+ md:text-5xl lg:text-6xl dark:text-white p-10">Our Services</h1>
 </div>
 
 <div className=' text-center'>
 
-<ul className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white"><li>Professional DJs: Our talented DJs are experienced in a wide range of music genres and will tailor the playlist to suit your event perfectly.</li>
-
-<li>State-of-the-Art Equipment: We use top-of-the-line sound and lighting equipment to ensure that your event looks and sounds amazing.</li>
-
-<li>Customizable Packages: Whether you're planning a wedding, corporate event, or private party, we have packages to suit every need and budget.</li>
-
+<ul className="mb-6 text-lg font-normal text-black lg:text-xl sm:px-16 xl:px-48 dark:text-white list-disc">
+  <li className="p-3">Professional DJs: Our talented DJs are experienced in a wide range of music genres and will tailor the playlist to suit your event perfectly.</li>
+  <li className="p-3">State-of-the-Art Equipment: We use top-of-the-line sound and lighting equipment to ensure that your event looks and sounds amazing.</li>
+  <li className="p-3">Customizable Packages: Whether you're planning a wedding, corporate event, or private party, we have packages to suit every need and budget.</li>
 </ul>
 
 </div>
 
 <div className='text-center'>
-<h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white">Why Choose Us?</h1>
+<h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-black md:text-5xl lg:text-6xl dark:text-white">Why Choose Us?</h1>
 
 </div>
 
 <div className='hero-image text-center'>
-<ol className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white"><li>Experience: With years of experience in the industry, we know how to keep the dance floor packed and the energy high.</li>
-
-<li>Professionalism: From our initial consultation to the last song of the night, you can count on us to be reliable, punctual, and professional.</li>
-
-<li>Client Satisfaction: Our number one priority is making sure that you and your guests have an unforgettable experience. We'll work closely with you to understand your vision and bring it to life.</li>
+<ol className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white list-disc">
+  <li className="p-3">Experience: With years of experience in the industry, we know how to keep the dance floor packed and the energy high.</li>
+  <li className="p-3">Professionalism: From our initial consultation to the last song of the night, you can count on us to be reliable, punctual, and professional.</li>
+  <li className="p-3">Client Satisfaction: Our number one priority is making sure that you and your guests have an unforgettable experience. We'll work closely with you to understand your vision and bring it to life.</li>
 </ol>
 </div>
 <a href="/contact" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-teal-600 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
