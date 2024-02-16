@@ -2,6 +2,7 @@
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Form from '../components/contactform';
+import { none } from '@cloudinary/url-gen/qualifiers/fontHinting';
 // `app/page.tsx` is the UI for the `/` URL
 export default function Page() {
     return (
@@ -16,3 +17,5 @@ export default function Page() {
     </div>)
     
   }
+
+  

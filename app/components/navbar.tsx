@@ -29,9 +29,9 @@ const navbar = () => {
         <Navbar.Link href="/about">
           <p>About</p>
         </Navbar.Link>
-        <Navbar.Link href="/services">
+        {/* <Navbar.Link href="/services">
           Services
-        </Navbar.Link>
+        </Navbar.Link> */}
         <Navbar.Link href="/pricing">
           Pricing
         </Navbar.Link>
