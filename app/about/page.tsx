@@ -12,13 +12,12 @@ export default function Page() {
     return (
       <div>
         <Navbar></Navbar>
-        <h1 className="pt-5 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">About</h1>
-        <p className=" m-20 pt-5 text-center mb-7 md:text-2xl lg:text-1xl dark:text-white">Welcome to MIXD Entertainment, where the art of music meets the celebration of moments.</p>
+        <h1 className="pt-5 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Meet Our Team</h1>
 
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Meet Our Team</h2>
+         
       </div> 
       </div>
 

@@ -63,33 +63,34 @@ export default function Home() {
 </div>
 
 <div className='text-center'>
-<h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white p-10"> Pofessioanl DJ Services</h1>
+<h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white p-10"> Our Services</h1>
 </div>
 
-<div className='hero-image text-center'>
-<p className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white">Here at MIXD Entertianment we provide professional Dj services & more. With over 15 years of experience there is no need for you to worry about music for your event.</p>
+<div className=' text-center'>
+
+<ul className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white"><li>Professional DJs: Our talented DJs are experienced in a wide range of music genres and will tailor the playlist to suit your event perfectly.</li>
+
+<li>State-of-the-Art Equipment: We use top-of-the-line sound and lighting equipment to ensure that your event looks and sounds amazing.</li>
+
+<li>Customizable Packages: Whether you're planning a wedding, corporate event, or private party, we have packages to suit every need and budget.</li>
+
+</ul>
 
 </div>
 
 <div className='text-center'>
-<h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white">Lighting</h1>
+<h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white">Why Choose Us?</h1>
 
 </div>
 
 <div className='hero-image text-center'>
-<p className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white">Here at MIXD Entertianment we provide professional Dj services & more. With over 15 years of experience there is no need for you to worry about music for your event.</p>
+<ol className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white"><li>Experience: With years of experience in the industry, we know how to keep the dance floor packed and the energy high.</li>
+
+<li>Professionalism: From our initial consultation to the last song of the night, you can count on us to be reliable, punctual, and professional.</li>
+
+<li>Client Satisfaction: Our number one priority is making sure that you and your guests have an unforgettable experience. We'll work closely with you to understand your vision and bring it to life.</li>
+</ol>
 </div>
-
-<div className='text-center'>
-<h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white">Photography</h1>
-</div>
-
-<div className='hero-image text-center'>
-<p className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white">Here at MIXD Entertianment we provide professional Dj services & more. With over 15 years of experience there is no need for you to worry about music for your event.</p>
-
-
-</div>
-
 <a href="/contact" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-teal-600 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
     Request Pricing
     <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
