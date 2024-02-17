@@ -35,7 +35,7 @@ const navbar = () => {
         <Navbar.Link href="/pricing">
           Pricing
         </Navbar.Link>
-        <Navbar.Link href="/contact">
+        <Navbar.Link href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54">
           Contact
         </Navbar.Link>
       </Navbar.Collapse>
