@@ -20,8 +20,8 @@ const footer = () => {
           <div>
             <Footer.Title title="about" />
             <Footer.LinkGroup col>
-              <Footer.Link href="/services">
-                Services
+              <Footer.Link href="/about">
+                About Us
               </Footer.Link>
               <Footer.Link href="/pricing">
                 Pricing
@@ -31,12 +31,12 @@ const footer = () => {
           <div>
             <Footer.Title title="Follow us" />
             <Footer.LinkGroup col>
-              <Footer.Link href="#">
+              <Footer.Link href="https://www.instagram.com/mixd_chicago">
                 Instagram
               </Footer.Link>
-              <Footer.Link href="#">
+              {/* <Footer.Link href="#">
                 Facebook
-              </Footer.Link>
+              </Footer.Link> */}
             </Footer.LinkGroup>
           </div>
           {/* Legal Section Below */}
@@ -62,11 +62,11 @@ const footer = () => {
         />
         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
           <Footer.Icon
-            href="#"
+            href="https://www.instagram.com/mixd_chicago"
             icon={BsFacebook}
           />
           <Footer.Icon
-            href="#"
+            href="https://www.instagram.com/mixd_chicago"
             icon={BsInstagram}
           />
           {/* <Footer.Icon
