@@ -10,9 +10,9 @@ export default function Page() {
 
   
     return (
-      <div>
+      <div className="bg-white">
         <Navbar></Navbar>
-        <h1 className="pt-5 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Meet Our Team</h1>
+        <h1 className="bg-white pt-5 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Meet Our Team</h1>
 
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">

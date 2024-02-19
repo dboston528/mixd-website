@@ -3,8 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar, DarkThemeToggle, Flowbite } from 'flowbite-react';
 import Footer from '../app/components/footer';
-import Test from './components/testimonial';
-import { Card } from 'flowbite-react';
 
  
 export default function Home() {  
@@ -62,12 +60,12 @@ export default function Home() {
 </a>
 </div>
 
-<div className='text-center'>
+<div className='text-center bg-white'>
 <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-black
- md:text-5xl lg:text-6xl dark:text-white p-10">Our Services</h1>
+ md:text-5xl lg:text-6xl dark:text-white bg-white p-10">Our Services</h1>
 </div>
 
-<div className=' text-center'>
+<div className=' text-center bg-white'>
 
 <ul className="mb-6 text-lg font-normal text-black lg:text-xl sm:px-16 xl:px-48 dark:text-white list-disc">
   <li className="p-3">Professional DJs: Our talented DJs are experienced in a wide range of music genres and will tailor the playlist to suit your event perfectly.</li>
@@ -77,7 +75,7 @@ export default function Home() {
 
 </div>
 
-<div className='text-center'>
+<div className='text-center bg-white'>
 <h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-black md:text-5xl lg:text-6xl dark:text-white">Why Choose Us?</h1>
 
 </div>
