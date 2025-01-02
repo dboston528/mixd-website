@@ -15,14 +15,14 @@ export default function Page() {
         <div className="flex justify-center mb-6">
           <Card
             className="max-w-sm"
-            imgAlt="Meaningful alt text for an image that is not purely decorative"
+            imgAlt="Image of DJ B Jones"
             imgSrc="https://res.cloudinary.com/he5g3ml0o/image/upload/v1706334409/uq4ruuysfu9c1ycnyshi.png"
           >
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Brad(Dj B Jones)
+              Brad (Dj B Jones)
             </h5>
             <p className="font-normal text-gray-700 dark:text-gray-400">
-              Co-founder
+              DJ & Co-founder
             </p>
           </Card>
         </div>
@@ -30,14 +30,29 @@ export default function Page() {
         <div className="flex justify-center">
           <Card
             className="max-w-sm"
-            imgAlt="Meaningful alt text for an image that is not purely decorative"
+            imgAlt="Image of DeAndre a.k.a. DJ duggy"
             imgSrc="https://res.cloudinary.com/he5g3ml0o/image/upload/v1706333353/bjt9igln8fuz4xbtlpb6.png"
           >
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              DeAndre(DJ Duggy)
+              DeAndre (DJ Duggy)
             </h5>
             <p className="font-normal text-gray-700 dark:text-gray-400">
-              Co-founder
+              DJ & Co-founder
+            </p>
+          </Card>
+        </div>
+
+        <div className="flex justify-center">
+          <Card
+            className="max-w-sm"
+            imgAlt="image of MC DeAndre Tanner"
+            imgSrc="https://res.cloudinary.com/he5g3ml0o/image/upload/v1735761317/tanner-1_sofygl.png"
+          >
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              DeAndre Tanner
+            </h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              Master of Ceremonies
             </p>
           </Card>
         </div>
