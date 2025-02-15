@@ -1,39 +1,14 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
+import { DarkThemeToggle, Flowbite } from "flowbite-react";
 import Footer from "../app/components/footer";
+import Navbar from "./components/navbar";
 
 export default function Home() {
   return (
     <main className="flex  flex-col  justify-between">
-      <Navbar>
-        <Navbar.Brand href="/">
-          <img
-            alt="MIXD Logo"
-            // className="mr-3 h-6 sm:h-9"
-            src="/next.svg"
-            width={102}
-            height={29}
-          />
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse>
-          <Navbar.Link active href="/">
-            <p>Home</p>
-          </Navbar.Link>
-          <Navbar.Link href="/about">
-            <p>About</p>
-          </Navbar.Link>
-          {/* <Navbar.Link href="/services">
-          Services  
-        </Navbar.Link> */}
-          <Navbar.Link href="/pricing">Pricing</Navbar.Link>
-          <Navbar.Link href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54">
-            Contact
-          </Navbar.Link>
-        </Navbar.Collapse>
-      </Navbar>
+      <Navbar />
       <div className="hero-image text-center">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white">
           Let us DJ your next event.
