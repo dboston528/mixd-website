@@ -74,10 +74,6 @@ const footer = () => {
               href="https://www.instagram.com/mixd_chicago"
               icon={BsInstagram}
             />
-            <Footer.Icon
-              href="https://www.theknot.com/marketplace/redirect-2081957?utm_source=vendor_website&utm_medium=banner&utm_term=1c8fd847-5942-40d5-8a13-2e087415f5db&utm_campaign=vendor_badge_assets"
-              icon={MyIcon}
-            />
 
             {/* <Footer.Icon
             href="#"
