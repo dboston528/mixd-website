@@ -29,7 +29,8 @@ body {
 /* my css */
 
 .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/3082764/pexels-photo-3082764.jpeg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://player.cloudinary.com/embed/?cloud_name=he5g3ml0o&public_id=IMG_6550_emusxs&profile=cld-default");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,5 +38,3 @@ body {
   position: relative;
   padding: 100px;
 }
-
-

@@ -9,36 +9,57 @@ export default function Home() {
   return (
     <main className="flex  flex-col  justify-between">
       <Navbar />
-      <div className="hero-image text-center">
-        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-100 md:text-5xl lg:text-6xl dark:text-white">
-          Let us DJ your next event.
-        </h1>
-        <p className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white">
-          Here at MIXD Entertianment we provide professional Dj services & more.
-          With over 15 years of experience there is no need for you to worry
-          about music for your event.
-        </p>
-        <a
-          href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
-          className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-teal-600 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+
+      <div className="relative w-full h-screen overflow-hidden">
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-          Request Pricing
-          <svg
-            className="w-3.5 h-3.5 ml-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
+          <source
+            src="https://res.cloudinary.com/he5g3ml0o/video/upload/so_0,eo_10/IMG_6550_emusxs.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10" />
+
+        {/* Hero Content */}
+        <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-6">
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl">
+            You’ve got enough to worry about — music shouldn’t be one of them.
+          </h1>
+          <p className="mb-6 text-lg font-normal lg:text-xl sm:px-16 xl:px-48">
+            MIXD Entertainment delivers professional DJ services with flawless
+            timing and unforgettable vibes. With 15+ years of experience, we
+            keep your event flowing and your guests dancing.
+          </p>
+          <a
+            href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
+            className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
+            Request Pricing
+            <svg
+              className="w-3.5 h-3.5 ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div className="text-center bg-white">
