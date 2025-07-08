@@ -71,10 +71,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Weddings */}
-            <a
-              href="/services/weddings"
-              className="relative block rounded-xl overflow-hidden group"
-            >
+            <a className="relative block rounded-xl overflow-hidden group">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751726915/IMG_8699_1_cmj2iz.jpg"
                 alt="Weddings"
@@ -87,10 +84,7 @@ export default function Home() {
             </a>
 
             {/* Private Events */}
-            <a
-              href="/services/private-events"
-              className="relative block rounded-xl overflow-hidden group"
-            >
+            <a className="relative block rounded-xl overflow-hidden group">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751943492/IMG_0966_2_wlq7ec.jpg"
                 alt="Private Events"
@@ -103,10 +97,7 @@ export default function Home() {
             </a>
 
             {/* Schools */}
-            <a
-              href="/services/schools"
-              className="relative block rounded-xl overflow-hidden group"
-            >
+            <a className="relative block rounded-xl overflow-hidden group">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751861791/school_thumbnail_wtevmr.jpg"
                 alt="Schools"
@@ -119,10 +110,7 @@ export default function Home() {
             </a>
 
             {/* Mitzvah's */}
-            <a
-              href="/services/mitzvahs"
-              className="relative block rounded-xl overflow-hidden group"
-            >
+            <a className="relative block rounded-xl overflow-hidden group">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751944013/IMG_0B3FFFD98443-1_aut1ug.jpg"
                 alt="Mitzvah's"
