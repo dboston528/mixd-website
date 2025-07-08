@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { DarkThemeToggle, Flowbite } from "flowbite-react";
+import { Card, DarkThemeToggle, Flowbite } from "flowbite-react";
 import Footer from "../app/components/footer";
 import Navbar from "./components/navbar";
 
@@ -61,35 +61,104 @@ export default function Home() {
           </a>
         </div>
       </div>
+      {/* Services Section */}
 
-      <div className="text-center bg-white">
-        <h1
-          className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-black
- md:text-5xl lg:text-6xl dark:text-white bg-white p-10"
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-extrabold text-center md:text-5xl lg:text-6xl mb-8 ">
+            Our Services
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Weddings */}
+            <a
+              href="/services/weddings"
+              className="relative block rounded-xl overflow-hidden group"
+            >
+              <img
+                src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751726915/IMG_8699_1_cmj2iz.jpg"
+                alt="Weddings"
+                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
+              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
+                Weddings
+              </h3>
+            </a>
+
+            {/* Private Events */}
+            <a
+              href="/services/private-events"
+              className="relative block rounded-xl overflow-hidden group"
+            >
+              <img
+                src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751943492/IMG_0966_2_wlq7ec.jpg"
+                alt="Private Events"
+                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
+              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
+                Private Events
+              </h3>
+            </a>
+
+            {/* Schools */}
+            <a
+              href="/services/schools"
+              className="relative block rounded-xl overflow-hidden group"
+            >
+              <img
+                src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751861791/school_thumbnail_wtevmr.jpg"
+                alt="Schools"
+                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
+              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
+                Schools
+              </h3>
+            </a>
+
+            {/* Mitzvah's */}
+            <a
+              href="/services/mitzvahs"
+              className="relative block rounded-xl overflow-hidden group"
+            >
+              <img
+                src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751944013/IMG_0B3FFFD98443-1_aut1ug.jpg"
+                alt="Mitzvah's"
+                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
+              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
+                Mitzvah's
+              </h3>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-2 max-w-7xl mx-auto justify-items-center">
+        <Card
+          className="min-h-[28rem] w-full max-w-[28rem] flex items-center justify-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1743550455435-7a635c585ceb?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          Our Services
-        </h1>
-      </div>
-
-      <div className=" text-center bg-white">
-        <ul className="mb-6 text-lg font-normal text-black lg:text-xl sm:px-16 xl:px-48 dark:text-white list-disc">
-          <li className="p-3">
-            Professional DJs: Our talented DJs are experienced in a wide range
-            of music genres and will tailor the playlist to suit your event
-            perfectly.
-          </li>
-          <li className="p-3">
-            State-of-the-Art Equipment: We use top-of-the-line sound and
-            lighting equipment to ensure that your event looks and sounds
-            amazing.
-          </li>
-          <li className="p-3">
-            Customizable Packages: Whether you're planning a wedding, corporate
-            event, or private party, we have packages to suit every need and
-            budget.
-          </li>
-        </ul>
-      </div>
+          <h1 className="font-extrabold text-white">Weddings </h1>
+        </Card>
+        <Card className="min-h-[28rem] w-full flex items-center justify-center">
+          <h1 className="font-extrabold text-black">Private Events </h1>
+        </Card>
+        <Card className="min-h-[28rem] w-full flex items-center justify-center">
+          <h1 className="font-extrabold text-black">Schools </h1>
+        </Card>
+        <Card className="min-h-[28rem] w-full flex items-center justify-center">
+          <h1 className="font-extrabold text-black">Mitzvah's </h1>
+        </Card>
+      </div> */}
 
       <div className="text-center bg-white">
         <h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-black md:text-5xl lg:text-6xl dark:text-white">
