@@ -14,24 +14,26 @@ const navbar = () => {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link active href="/" className="inline-block  md:py-3">
+          <Navbar.Link  href="/" className="inline-block md:py-3 hover:text-teal-600 transition-colors duration-200">
             <p>Home</p>
           </Navbar.Link>
-          <Navbar.Link href="/about" className="inline-block  md:py-3">
+          <Navbar.Link href="/about" className="inline-block md:py-3 hover:text-teal-600 transition-colors duration-200">
             <p>About</p>
           </Navbar.Link>
           {/* <Navbar.Link href="/services">
           Services
         </Navbar.Link> */}
-          <Navbar.Link href="/pricing" className="inline-block  md:py-3">
+          <Navbar.Link href="/pricing" className="inline-block md:py-3 hover:text-teal-600 transition-colors duration-200">
             Pricing
           </Navbar.Link>
-          <Navbar.Link
+          <a
             href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
-            className="inline-block md:px-8 md:py-3 rounded-full bg-teal-600 text-white text-center hover:bg-teal-800 transition"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-teal-600 text-white font-medium text-center hover:!bg-teal-700 hover:!text-white focus:ring-4 focus:ring-teal-300 transition-all duration-200 whitespace-nowrap"
           >
             Contact Us
-          </Navbar.Link>
+          </a>
         </Navbar.Collapse>
       </Navbar>
     </div>

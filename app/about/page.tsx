@@ -55,7 +55,7 @@ export default function Page() {
           <Card
             className="max-w-sm w-full"
             imgAlt="Image of DJ Guice"
-            imgSrc="https://res.cloudinary.com/he5g3ml0o/image/upload/v1706334409/uq4ruuysfu9c1ycnyshi.png"
+            imgSrc="https://ui-avatars.com/api/?name=DJ+Guice&size=400&background=14b8a6&color=fff&bold=true"
           >
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               DJ Guice
@@ -68,7 +68,7 @@ export default function Page() {
           <Card
             className="max-w-sm w-full"
             imgAlt="Image of DJ Troy"
-            imgSrc="https://res.cloudinary.com/he5g3ml0o/image/upload/v1706334409/uq4ruuysfu9c1ycnyshi.png"
+            imgSrc="https://ui-avatars.com/api/?name=DJ+Troy&size=400&background=14b8a6&color=fff&bold=true"
           >
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               DJ Troy
