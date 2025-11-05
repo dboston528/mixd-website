@@ -65,7 +65,7 @@ export default function Home() {
 
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-extrabold text-center md:text-5xl lg:text-6xl mb-8 ">
+          <h2 className="text-4xl font-extrabold text-center md:text-5xl lg:text-6xl mb-8 text-gray-900 dark:text-white">
             Our Services
           </h2>
 
@@ -148,13 +148,10 @@ export default function Home() {
         </Card>
       </div> */}
 
-      <div className="text-center bg-white">
-        <h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-black md:text-5xl lg:text-6xl dark:text-white">
+      <div className="hero-image text-center">
+        <h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
           Why Choose Us?
         </h1>
-      </div>
-
-      <div className="hero-image text-center">
         <ol className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white list-disc">
           <li className="p-3">
             Experience: With years of experience in the industry, we know how to
