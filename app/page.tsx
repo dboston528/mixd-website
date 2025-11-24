@@ -148,47 +148,82 @@ export default function Home() {
         </Card>
       </div> */}
 
-      <div className="hero-image text-center">
-        <h1 className="p-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
-          Why Choose Us?
-        </h1>
-        <ol className="mb-6 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48 dark:text-white list-disc">
-          <li className="p-3">
-            Experience: With years of experience in the industry, we know how to
-            keep the dance floor packed and the energy high.
-          </li>
-          <li className="p-3">
-            Professionalism: From our initial consultation to the last song of
-            the night, you can count on us to be reliable, punctual, and
-            professional.
-          </li>
-          <li className="p-3">
-            Client Satisfaction: Our number one priority is making sure that you
-            and your guests have an unforgettable experience. We'll work closely
-            with you to understand your vision and bring it to life.
-          </li>
-        </ol>
-        <a
-          href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
-          className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-teal-600 rounded-lg hover:bg-teal-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-        >
-          Request Pricing
-          <svg
-            className="w-3.5 h-3.5 ml-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
+      <div className="hero-image">
+        <div className="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-md rounded-3xl p-10 md:p-14 shadow-2xl border border-white/20 space-y-6">
+          <div className="inline-flex items-center gap-3 mx-auto px-5 py-2 rounded-full bg-white/20 text-sm uppercase tracking-[0.2em] text-gray-100">
+            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+            Trusted Event Partners
+          </div>
+          <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+            Why Choose Us?
+          </h1>
+          <div className="grid gap-6 text-left text-gray-100/90 md:grid-cols-3">
+            {[
+              {
+                title: 'Seasoned DJs',
+                copy:
+                  'Hundreds of weddings, mitzvahs, and galas give us the instincts to read any crowd.',
+              },
+              {
+                title: 'White-Glove Service',
+                copy:
+                  'From planning calls to showtime, our team handles every detail with polish.',
+              },
+              {
+                title: 'Client-First Approach',
+                copy:
+                  'We build playlists with you so the soundtrack feels personal and unforgettable.',
+              },
+            ].map(({ title, copy }) => (
+              <div
+                key={title}
+                className="group rounded-2xl border border-white/20 bg-white/5 p-6 shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white/15 hover:shadow-xl"
+              >
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-400/20 text-teal-200 group-hover:bg-teal-400/30">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-white">
+                  {title}
+                </h3>
+                <p className="text-base">{copy}</p>
+              </div>
+            ))}
+          </div>
+          <a
+            href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
+            className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-teal-500/90 hover:bg-teal-400 focus:ring-4 focus:ring-teal-300 rounded-2xl transition-colors duration-200"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
+            Request Pricing
+            <svg
+              className="w-3.5 h-3.5 ml-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
       <Footer></Footer>
     </main>

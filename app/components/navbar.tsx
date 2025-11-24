@@ -1,5 +1,12 @@
+'use client';
 import { Navbar } from "flowbite-react";
+import { useAuth } from "../../contexts/AuthContext";
+import Link from "next/link";
+import AdminLink from "../../components/AdminLink";
+
 const navbar = () => {
+  const { currentUser } = useAuth();
+  
   return (
     <div>
       <Navbar>
@@ -26,6 +33,19 @@ const navbar = () => {
           <Navbar.Link href="/pricing" className="inline-block md:py-3 hover:text-teal-600 transition-colors duration-200">
             Pricing
           </Navbar.Link>
+          {currentUser && (
+            <>
+              <Navbar.Link href="/dashboard" className="inline-block md:py-3 hover:text-teal-600 transition-colors duration-200">
+                Dashboard
+              </Navbar.Link>
+              <AdminLink />
+            </>
+          )}
+          {!currentUser && (
+            <Navbar.Link href="/login" className="inline-block md:py-3 hover:text-teal-600 transition-colors duration-200">
+              Login
+            </Navbar.Link>
+          )}
           <a
             href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
             target="_blank"
