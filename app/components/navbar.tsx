@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import Link from "next/link";
 import AdminLink from "../../components/AdminLink";
 
-const navbar = () => {
+const NavbarMenu = () => {
   const { currentUser } = useAuth();
   
   return (
@@ -59,4 +59,4 @@ const navbar = () => {
     </div>
   );
 };
-export default navbar;
+export default NavbarMenu;
