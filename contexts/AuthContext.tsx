@@ -22,8 +22,8 @@ interface AuthContextType {
   signup: (email: string, password: string, displayName?: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
-  loginWithGoogle: () => Promise<void>;
-  loginWithApple: () => Promise<void>;
+  loginWithGoogle: () => Promise<UserCredential>;
+  loginWithApple: () => Promise<UserCredential>;
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
