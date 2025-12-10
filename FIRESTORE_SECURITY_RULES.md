@@ -43,6 +43,7 @@ service cloud.firestore {
     }
     
     // Helper to check if user can access event
+    // Note: eventMembers access is checked separately in eventMembers rules
     function canAccessEvent(eventId) {
       return isAdmin() || 
              isEventOwner(eventId) || 
@@ -99,6 +100,24 @@ service cloud.firestore {
         canAccessEvent(request.resource.data.eventId);
       allow update, delete: if isAuthenticated() && 
         canAccessEvent(resource.data.eventId);
+    }
+    
+    // Event Members: Access based on event access and admin permissions
+    match /eventMembers/{memberId} {
+      // Users can read if they're admin, event owner, or the member themselves
+      allow read: if isAuthenticated() && (
+        isAdmin() || 
+        isEventOwner(resource.data.eventId) ||
+        resource.data.userId == request.auth.uid
+      );
+      // Only admins can create event members
+      allow create: if isAuthenticated() && isAdmin() &&
+        request.resource.data.eventId is string &&
+        request.resource.data.userId is string &&
+        request.resource.data.role in ['client', 'dj', 'admin'];
+      // Only admins can update/delete
+      allow update: if isAuthenticated() && isAdmin();
+      allow delete: if isAuthenticated() && isAdmin();
     }
     
     // Deny all other access

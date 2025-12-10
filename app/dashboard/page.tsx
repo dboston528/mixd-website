@@ -101,24 +101,54 @@ export default function DashboardPage() {
           eventsData.push({ id: doc.id, ...doc.data() } as Event);
         });
       } else {
-        // Regular users and DJs: get events they own OR are assigned to
+        // Regular users and DJs: get events they own OR are assigned to via assignedDJs OR eventMembers
         const ownedQuery = query(eventsRef, where('userId', '==', currentUser.uid));
         const assignedQuery = query(eventsRef, where('assignedDJs', 'array-contains', currentUser.uid));
         
-        const [ownedSnapshot, assignedSnapshot] = await Promise.all([
+        // Also check eventMembers collection
+        const eventMembersRef = collection(db, 'eventMembers');
+        const membersQuery = query(eventMembersRef, where('userId', '==', currentUser.uid));
+        
+        const [ownedSnapshot, assignedSnapshot, membersSnapshot] = await Promise.all([
           getDocs(ownedQuery),
           getDocs(assignedQuery),
+          getDocs(membersQuery),
         ]);
         
         const eventMap = new Map<string, Event>();
         
+        // Add owned events
         ownedSnapshot.forEach((doc) => {
           eventMap.set(doc.id, { id: doc.id, ...doc.data() } as Event);
         });
         
+        // Add events assigned via assignedDJs
         assignedSnapshot.forEach((doc) => {
           eventMap.set(doc.id, { id: doc.id, ...doc.data() } as Event);
         });
+        
+        // Add events from eventMembers
+        const memberEventIds = new Set<string>();
+        membersSnapshot.forEach((doc) => {
+          const memberData = doc.data();
+          if (memberData.eventId) {
+            memberEventIds.add(memberData.eventId);
+          }
+        });
+        
+        // Load events for which user is a member
+        if (memberEventIds.size > 0) {
+          const memberEventPromises = Array.from(memberEventIds).map(eventId => 
+            getDoc(doc(db, 'events', eventId))
+          );
+          const memberEventDocs = await Promise.all(memberEventPromises);
+          
+          memberEventDocs.forEach((eventDoc) => {
+            if (eventDoc.exists()) {
+              eventMap.set(eventDoc.id, { id: eventDoc.id, ...eventDoc.data() } as Event);
+            }
+          });
+        }
         
         eventsData = Array.from(eventMap.values());
       }
