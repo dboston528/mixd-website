@@ -154,8 +154,12 @@ export default function DashboardPage() {
       }
       
       setEvents(eventsData);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error loading events:', error);
+      // Log more details for permission errors
+      if (error.code === 'permission-denied' || error.message?.includes('permission')) {
+        console.error('Permission denied. User:', currentUser?.uid, 'Role:', userRole);
+      }
     } finally {
       setLoading(false);
     }
