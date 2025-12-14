@@ -10,11 +10,11 @@ import {
   query, 
   where, 
   getDocs, 
-  addDoc, 
   doc, 
   deleteDoc, 
   Timestamp,
-  getDoc
+  getDoc,
+  setDoc
 } from 'firebase/firestore';
 import { db } from '../../../../lib/firebase';
 import { useAuth } from '../../../../contexts/AuthContext';
@@ -161,7 +161,9 @@ export default function MembersPage() {
     }
     
     try {
-      await addDoc(collection(db, 'eventMembers'), {
+      // Use composite document ID: userId_eventId for easier security rule checking
+      const memberId = `${selectedUserId}_${eventId}`;
+      await setDoc(doc(db, 'eventMembers', memberId), {
         eventId: eventId,
         userId: selectedUserId,
         role: selectedRole,

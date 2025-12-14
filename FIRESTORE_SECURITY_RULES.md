@@ -42,12 +42,18 @@ service cloud.firestore {
              request.auth.uid in event.data.assignedDJs;
     }
     
+    // Helper to check if user is a member of event via eventMembers
+function isEventMember(eventId) {
+  let memberDocId = request.auth.uid + '_' + eventId;
+  return exists(/databases/$(database)/documents/eventMembers/$(memberDocId));
+}
+    
     // Helper to check if user can access event
-    // Note: eventMembers access is checked separately in eventMembers rules
     function canAccessEvent(eventId) {
       return isAdmin() || 
              isEventOwner(eventId) || 
-             (isDJ() && isAssignedDJ(eventId));
+             (isDJ() && isAssignedDJ(eventId)) ||
+             isEventMember(eventId);
     }
     
     // Users collection for roles
@@ -103,19 +109,21 @@ service cloud.firestore {
     }
     
     // Event Members: Access based on event access and admin permissions
+    // Uses composite document ID: userId_eventId
     match /eventMembers/{memberId} {
-      // Users can read if they're admin, event owner, or the member themselves
+      // Users can read if they're admin or the member themselves
+      // Removed isEventOwner check to avoid circular dependency with event reads
       allow read: if isAuthenticated() && (
         isAdmin() || 
-        isEventOwner(resource.data.eventId) ||
         resource.data.userId == request.auth.uid
       );
-      // Only admins can create event members
+      // Only admins can create/update event members
+      // Document ID must match pattern: userId_eventId
       allow create: if isAuthenticated() && isAdmin() &&
         request.resource.data.eventId is string &&
         request.resource.data.userId is string &&
-        request.resource.data.role in ['client', 'dj', 'admin'];
-      // Only admins can update/delete
+        request.resource.data.role in ['client', 'dj', 'admin'] &&
+        memberId == request.resource.data.userId + '_' + request.resource.data.eventId;
       allow update: if isAuthenticated() && isAdmin();
       allow delete: if isAuthenticated() && isAdmin();
     }
