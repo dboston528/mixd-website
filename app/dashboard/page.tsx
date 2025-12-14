@@ -109,27 +109,44 @@ export default function DashboardPage() {
         const eventMembersRef = collection(db, 'eventMembers');
         const membersQuery = query(eventMembersRef, where('userId', '==', currentUser.uid));
         
-        const [ownedSnapshot, assignedSnapshot, membersSnapshot] = await Promise.all([
-          getDocs(ownedQuery),
-          getDocs(assignedQuery),
-          getDocs(membersQuery),
-        ]);
+        let ownedSnapshot, assignedSnapshot, membersSnapshot;
+        
+        try {
+          ownedSnapshot = await getDocs(ownedQuery);
+        } catch (error: any) {
+          console.error('Owned events query failed:', error.code, error.message);
+          ownedSnapshot = { forEach: () => {}, size: 0, docs: [] } as any;
+        }
+        
+        try {
+          assignedSnapshot = await getDocs(assignedQuery);
+        } catch (error: any) {
+          console.error('Assigned events query failed:', error.code, error.message);
+          assignedSnapshot = { forEach: () => {}, size: 0, docs: [] } as any;
+        }
+        
+        try {
+          membersSnapshot = await getDocs(membersQuery);
+        } catch (error: any) {
+          console.error('eventMembers query failed:', error.code, error.message);
+          membersSnapshot = { forEach: () => {}, size: 0, docs: [] } as any;
+        }
         
         const eventMap = new Map<string, Event>();
         
         // Add owned events
-        ownedSnapshot.forEach((doc) => {
+        ownedSnapshot.forEach((doc: any) => {
           eventMap.set(doc.id, { id: doc.id, ...doc.data() } as Event);
         });
         
         // Add events assigned via assignedDJs
-        assignedSnapshot.forEach((doc) => {
+        assignedSnapshot.forEach((doc: any) => {
           eventMap.set(doc.id, { id: doc.id, ...doc.data() } as Event);
         });
         
         // Add events from eventMembers
         const memberEventIds = new Set<string>();
-        membersSnapshot.forEach((doc) => {
+        membersSnapshot.forEach((doc: any) => {
           const memberData = doc.data();
           if (memberData.eventId) {
             memberEventIds.add(memberData.eventId);
@@ -138,16 +155,27 @@ export default function DashboardPage() {
         
         // Load events for which user is a member
         if (memberEventIds.size > 0) {
-          const memberEventPromises = Array.from(memberEventIds).map(eventId => 
-            getDoc(doc(db, 'events', eventId))
-          );
-          const memberEventDocs = await Promise.all(memberEventPromises);
-          
-          memberEventDocs.forEach((eventDoc) => {
-            if (eventDoc.exists()) {
-              eventMap.set(eventDoc.id, { id: eventDoc.id, ...eventDoc.data() } as Event);
+          const memberEventPromises = Array.from(memberEventIds).map(async (eventId) => {
+            try {
+              const eventDoc = await getDoc(doc(db, 'events', eventId));
+              return eventDoc;
+            } catch (error: any) {
+              console.error(`Failed to load event ${eventId}:`, error.code, error.message);
+              throw error;
             }
           });
+          
+          try {
+            const memberEventDocs = await Promise.all(memberEventPromises);
+            memberEventDocs.forEach((eventDoc) => {
+              if (eventDoc.exists()) {
+                eventMap.set(eventDoc.id, { id: eventDoc.id, ...eventDoc.data() } as Event);
+              }
+            });
+          } catch (error: any) {
+            console.error('Error in Promise.all for member events:', error);
+            // Don't throw - let other events load if possible
+          }
         }
         
         eventsData = Array.from(eventMap.values());

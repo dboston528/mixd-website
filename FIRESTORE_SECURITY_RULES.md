@@ -43,11 +43,10 @@ service cloud.firestore {
     }
     
     // Helper to check if user is a member of event via eventMembers
-    function isEventMember(eventId) {
-      let memberDocId = request.auth.uid + '_' + eventId;
-      let memberDoc = get(/databases/$(database)/documents/eventMembers/$(memberDocId));
-      return memberDoc != null;
-    }
+function isEventMember(eventId) {
+  let memberDocId = request.auth.uid + '_' + eventId;
+  return exists(/databases/$(database)/documents/eventMembers/$(memberDocId));
+}
     
     // Helper to check if user can access event
     function canAccessEvent(eventId) {
@@ -112,10 +111,10 @@ service cloud.firestore {
     // Event Members: Access based on event access and admin permissions
     // Uses composite document ID: userId_eventId
     match /eventMembers/{memberId} {
-      // Users can read if they're admin, event owner, or the member themselves
+      // Users can read if they're admin or the member themselves
+      // Removed isEventOwner check to avoid circular dependency with event reads
       allow read: if isAuthenticated() && (
         isAdmin() || 
-        isEventOwner(resource.data.eventId) ||
         resource.data.userId == request.auth.uid
       );
       // Only admins can create/update event members
