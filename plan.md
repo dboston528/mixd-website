@@ -433,3 +433,96 @@ Collect structured planning data from clients.
 - Create API contracts
 - Design wireframes
 - Begin implementation
+
+---
+
+# Implementation Status (Current Codebase)
+
+The following features are already implemented or partially implemented.
+This section documents the current state for alignment with the PRD.
+
+## Implemented
+
+### Authentication & Roles
+- Email/password login and Google OAuth
+- Users stored in `users/{userId}` with role field (`client`, `dj`, `admin`)
+- Admin user management page for role changes
+- Event-level roles via `eventMembers` collection
+
+### Event Management (Partial)
+- Event creation and editing
+- Assigned DJs via `assignedDJs` array
+- Client/event membership via `eventMembers`
+- Dashboard views for admin, DJ, and client
+
+### Playlist Management (Partial)
+- Manual song entry
+- Spotify playlist import
+- Songs stored as arrays in `playlists` documents
+- Separate `mustPlayList` and `doNotPlayList` arrays on event
+
+### Timeline Builder (Partial)
+- Timeline items with time, title, description
+- Reordering via `order` field
+- Single flat timeline per event
+
+### Guest Song Requests (Partial)
+- Public `/request-song/[eventId]` page
+- No authentication required
+- Creates `songRequests` documents with approval flow
+
+## Missing or Incomplete (Relative to PRD)
+
+- Event status workflow (`draft`, `in_progress`, `finalized`, `archived`)
+- Unified event-level song collection
+- Song tagging system
+- Guest voting on songs
+- Token-based guest access
+- Questionnaire system
+- Export (CSV/PDF)
+- DJ private notes vs client notes separation
+
+---
+
+# Retrofit Plan (Incremental & Backward-Compatible)
+
+## Principles
+- Do not rename or remove existing routes
+- Prefer adding new collections/fields over modifying existing ones
+- Keep existing UI functional during migration
+- All guest writes must go through server APIs
+
+## Retrofit Order
+
+### Phase 1: Core Data Model Enhancements
+1. Add `status`, `venueName`, and `updatedAt` fields to `events`
+2. Introduce `events/{eventId}/songs` subcollection
+3. Keep existing playlists and songRequests operational
+
+### Phase 2: Guest Access Hardening
+1. Add `invites` collection with token-based access
+2. Replace direct guest Firestore writes with server API routes
+3. Enable guest voting on songs
+
+### Phase 3: Timeline Enhancements
+1. Extend timeline items with momentType
+2. Add clientNotes and djPrivateNotes
+3. Support linking songs to timeline items
+
+### Phase 4: Planning & Export Tools
+1. Questionnaire system
+2. CSV export
+3. PDF summary export
+
+## Migration Notes
+- Existing `mustPlayList` and `doNotPlayList` arrays will be migrated to song tags
+- Existing `songRequests` can be dual-written during transition
+- Missing fields should be treated as defaults in UI logic
+
+---
+
+# Development Workflow Notes
+
+- All changes should be implemented as additive, minimal diffs
+- Cursor prompts must analyze existing code before modifying
+- Each retrofit step should be independently shippable
