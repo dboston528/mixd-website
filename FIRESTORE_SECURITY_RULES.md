@@ -128,6 +128,19 @@ function isEventMember(eventId) {
       allow delete: if isAuthenticated() && isAdmin();
     }
     
+    // Event Songs: Access based on event access
+    // Subcollection under events: events/{eventId}/songs/{songId}
+    match /events/{eventId}/songs/{songId} {
+      allow read: if isAuthenticated() && canAccessEvent(eventId);
+      allow create: if isAuthenticated() && canAccessEvent(eventId);
+      allow update: if isAuthenticated() && canAccessEvent(eventId) &&
+        // Only allow updating specific fields (not addedBy fields for audit integrity)
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['title', 'artist', 'tag', 'sourceType', 'sourceId', 
+                   'sourceUrl', 'notes', 'voteCount', 'updatedAt']);
+      allow delete: if isAuthenticated() && canAccessEvent(eventId);
+    }
+    
     // Deny all other access
     match /{document=**} {
       allow read, write: if false;
