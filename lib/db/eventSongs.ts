@@ -133,3 +133,35 @@ export async function getSong(
   } as EventSong;
 }
 
+/**
+ * Find a song by title, artist, and tag
+ * Used for deletion when mapping from array songs to subcollection songs
+ */
+export async function findSongByTitleAndArtist(
+  eventId: string,
+  title: string,
+  artist: string,
+  tag: string
+): Promise<EventSong | null> {
+  const songsRef = collection(db, 'events', eventId, 'songs');
+  const q = query(
+    songsRef,
+    where('title', '==', title),
+    where('artist', '==', artist),
+    where('tag', '==', tag)
+  );
+  
+  const querySnapshot = await getDocs(q);
+  
+  if (querySnapshot.empty) {
+    return null;
+  }
+  
+  // Return the first match (should be unique based on title+artist+tag)
+  const doc = querySnapshot.docs[0];
+  return {
+    id: doc.id,
+    ...doc.data(),
+  } as EventSong;
+}
+

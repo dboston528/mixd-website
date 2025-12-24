@@ -7,23 +7,52 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { db } from '../../../../lib/firebase';
+import { useAuth } from '../../../../contexts/AuthContext';
+import { addSong, deleteSong, findSongByTitleAndArtist } from '../../../../lib/db/eventSongs';
 
 interface Song {
   id: string;
   title: string;
   artist: string;
+  subcollectionSongId?: string; // Store subcollection ID for deletion
 }
 
 export default function MustPlayPage() {
   const params = useParams();
   const eventId = params.eventId as string;
+  const { currentUser } = useAuth();
   const [songs, setSongs] = useState<Song[]>([]);
   const [loading, setLoading] = useState(true);
   const [newSong, setNewSong] = useState({ title: '', artist: '' });
+  const [userRole, setUserRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (currentUser) {
+      loadUserRole();
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     loadMustPlayList();
   }, [eventId]);
+
+  const loadUserRole = async () => {
+    if (!currentUser) return;
+    
+    try {
+      const userRef = doc(db, 'users', currentUser.uid);
+      const userSnap = await getDoc(userRef);
+      
+      if (userSnap.exists()) {
+        setUserRole(userSnap.data().role || 'client');
+      } else {
+        setUserRole('client');
+      }
+    } catch (error) {
+      console.error('Error loading user role:', error);
+      setUserRole('client');
+    }
+  };
 
   const loadMustPlayList = async () => {
     try {
@@ -43,7 +72,7 @@ export default function MustPlayPage() {
 
   const handleAddSong = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newSong.title || !newSong.artist) return;
+    if (!newSong.title || !newSong.artist || !currentUser) return;
     
     try {
       const eventRef = doc(db, 'events', eventId);
@@ -53,9 +82,39 @@ export default function MustPlayPage() {
         artist: newSong.artist,
       };
       
+      // Determine addedByType based on user role
+      const addedByType = userRole === 'dj' ? 'dj' : userRole === 'admin' ? 'dj' : 'client';
+      
+      // Write to array first (primary source of truth in Phase 1)
       await updateDoc(eventRef, {
         mustPlayList: arrayUnion(songData),
       });
+      
+      // Dual-write to subcollection (additive, fire-and-forget if it fails)
+      try {
+        const subcollectionSongId = await addSong(eventId, {
+          title: newSong.title,
+          artist: newSong.artist,
+          tag: 'must_play',
+          addedByType: addedByType,
+          addedByUserId: currentUser.uid,
+        });
+        
+        // Update array song with subcollection ID for easier deletion later
+        const songDataWithSubcollectionId: Song = {
+          ...songData,
+          subcollectionSongId: subcollectionSongId,
+        };
+        await updateDoc(eventRef, {
+          mustPlayList: arrayRemove(songData),
+        });
+        await updateDoc(eventRef, {
+          mustPlayList: arrayUnion(songDataWithSubcollectionId),
+        });
+      } catch (subcollectionError) {
+        // Log error but don't fail the operation (arrays are source of truth in Phase 1)
+        console.error('Error writing to subcollection (non-critical):', subcollectionError);
+      }
       
       setNewSong({ title: '', artist: '' });
       loadMustPlayList();
@@ -67,9 +126,35 @@ export default function MustPlayPage() {
           title: newSong.title,
           artist: newSong.artist,
         };
+        
+        const addedByType = userRole === 'dj' ? 'dj' : userRole === 'admin' ? 'dj' : 'client';
+        
         await setDoc(doc(db, 'events', eventId), {
           mustPlayList: [songData],
         });
+        
+        // Dual-write to subcollection
+        try {
+          const subcollectionSongId = await addSong(eventId, {
+            title: newSong.title,
+            artist: newSong.artist,
+            tag: 'must_play',
+            addedByType: addedByType,
+            addedByUserId: currentUser?.uid,
+          });
+          
+          // Update array with subcollection ID
+          const songDataWithSubcollectionId: Song = {
+            ...songData,
+            subcollectionSongId: subcollectionSongId,
+          };
+          await updateDoc(doc(db, 'events', eventId), {
+            mustPlayList: [songDataWithSubcollectionId],
+          });
+        } catch (subcollectionError) {
+          console.error('Error writing to subcollection (non-critical):', subcollectionError);
+        }
+        
         setNewSong({ title: '', artist: '' });
         loadMustPlayList();
       } else {
@@ -81,9 +166,34 @@ export default function MustPlayPage() {
   const handleRemoveSong = async (songToRemove: Song) => {
     try {
       const eventRef = doc(db, 'events', eventId);
+      
+      // Remove from array first (primary source of truth)
       await updateDoc(eventRef, {
         mustPlayList: arrayRemove(songToRemove),
       });
+      
+      // Also delete from subcollection
+      try {
+        if (songToRemove.subcollectionSongId) {
+          // Use stored subcollection ID if available
+          await deleteSong(eventId, songToRemove.subcollectionSongId);
+        } else {
+          // Fallback: find song by title+artist+tag
+          const subcollectionSong = await findSongByTitleAndArtist(
+            eventId,
+            songToRemove.title,
+            songToRemove.artist,
+            'must_play'
+          );
+          if (subcollectionSong) {
+            await deleteSong(eventId, subcollectionSong.id);
+          }
+        }
+      } catch (subcollectionError) {
+        // Log error but don't fail the operation
+        console.error('Error deleting from subcollection (non-critical):', subcollectionError);
+      }
+      
       loadMustPlayList();
     } catch (error) {
       console.error('Error removing song:', error);
