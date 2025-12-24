@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs, doc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../../../../lib/firebase';
+import { addSong } from '../../../../lib/db/eventSongs';
 
 interface SongRequest {
   id: string;
@@ -55,6 +56,26 @@ export default function RequestsPage() {
       await updateDoc(requestRef, {
         status: newStatus,
       });
+      
+      // If approved, create song in subcollection
+      if (newStatus === 'approved') {
+        const request = requests.find(r => r.id === requestId);
+        if (request) {
+          try {
+            await addSong(eventId, {
+              title: request.songTitle,
+              artist: request.artist,
+              tag: 'neutral',
+              addedByType: 'guest',
+              addedByGuestName: request.guestName,
+            });
+          } catch (subcollectionError) {
+            // Log error but don't fail the operation
+            console.error('Error creating song in subcollection (non-critical):', subcollectionError);
+          }
+        }
+      }
+      
       loadRequests();
     } catch (error) {
       console.error('Error updating request:', error);
