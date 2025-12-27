@@ -7,15 +7,7 @@ import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs, addDoc, Timestamp, or, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useRouter } from 'next/navigation';
-
-interface Event {
-  id: string;
-  name: string;
-  date: Timestamp;
-  type: string;
-  userId: string;
-  assignedDJs?: string[];
-}
+import { Event, EventStatus } from '../../types/events';
 
 export default function DashboardPage() {
   const { currentUser, logout } = useAuth();
@@ -23,7 +15,7 @@ export default function DashboardPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [newEvent, setNewEvent] = useState({ name: '', date: '', type: 'Wedding', assignedDJs: [] as string[] });
+  const [newEvent, setNewEvent] = useState({ name: '', date: '', type: 'Wedding', assignedDJs: [] as string[], venueName: '' });
   const [userRole, setUserRole] = useState<string | null>(null);
   const [allDJs, setAllDJs] = useState<Array<{ id: string; email: string; name: string }>>([]);
 
@@ -98,7 +90,14 @@ export default function DashboardPage() {
         // Admins can see all events
         const querySnapshot = await getDocs(eventsRef);
         querySnapshot.forEach((doc) => {
-          eventsData.push({ id: doc.id, ...doc.data() } as Event);
+          const data = doc.data();
+          eventsData.push({ 
+            id: doc.id, 
+            ...data,
+            status: data.status || 'draft',
+            venueName: data.venueName || undefined,
+            updatedAt: data.updatedAt || data.createdAt,
+          } as Event);
         });
       } else {
         // Regular users and DJs: get events they own OR are assigned to via assignedDJs OR eventMembers
@@ -136,12 +135,26 @@ export default function DashboardPage() {
         
         // Add owned events
         ownedSnapshot.forEach((doc: any) => {
-          eventMap.set(doc.id, { id: doc.id, ...doc.data() } as Event);
+          const data = doc.data();
+          eventMap.set(doc.id, { 
+            id: doc.id, 
+            ...data,
+            status: data.status || 'draft',
+            venueName: data.venueName || undefined,
+            updatedAt: data.updatedAt || data.createdAt,
+          } as Event);
         });
         
         // Add events assigned via assignedDJs
         assignedSnapshot.forEach((doc: any) => {
-          eventMap.set(doc.id, { id: doc.id, ...doc.data() } as Event);
+          const data = doc.data();
+          eventMap.set(doc.id, { 
+            id: doc.id, 
+            ...data,
+            status: data.status || 'draft',
+            venueName: data.venueName || undefined,
+            updatedAt: data.updatedAt || data.createdAt,
+          } as Event);
         });
         
         // Add events from eventMembers
@@ -169,7 +182,14 @@ export default function DashboardPage() {
             const memberEventDocs = await Promise.all(memberEventPromises);
             memberEventDocs.forEach((eventDoc) => {
               if (eventDoc.exists()) {
-                eventMap.set(eventDoc.id, { id: eventDoc.id, ...eventDoc.data() } as Event);
+                const data = eventDoc.data();
+                eventMap.set(eventDoc.id, { 
+                  id: eventDoc.id, 
+                  ...data,
+                  status: data.status || 'draft',
+                  venueName: data.venueName || undefined,
+                  updatedAt: data.updatedAt || data.createdAt,
+                } as Event);
               }
             });
           } catch (error: any) {
@@ -199,16 +219,20 @@ export default function DashboardPage() {
 
     try {
       const eventDate = new Date(newEvent.date);
+      const now = Timestamp.now();
       await addDoc(collection(db, 'events'), {
         name: newEvent.name,
         date: Timestamp.fromDate(eventDate),
         type: newEvent.type,
         userId: currentUser.uid,
         assignedDJs: newEvent.assignedDJs || [],
-        createdAt: Timestamp.now(),
+        createdAt: now,
+        status: 'draft' as EventStatus,
+        venueName: newEvent.venueName || undefined,
+        updatedAt: now,
       });
       
-      setNewEvent({ name: '', date: '', type: 'Wedding', assignedDJs: [] });
+      setNewEvent({ name: '', date: '', type: 'Wedding', assignedDJs: [], venueName: '' });
       setShowCreateModal(false);
       loadEvents();
     } catch (error) {
@@ -296,13 +320,32 @@ export default function DashboardPage() {
                 >
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-xl font-bold text-gray-900">{event.name}</h3>
-                    {event.userId !== currentUser?.uid && (
-                      <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                        Assigned
-                      </span>
-                    )}
+                    <div className="flex gap-2">
+                      {event.status && (
+                        <span className={`text-xs px-2 py-1 rounded ${
+                          event.status === 'draft' ? 'bg-gray-100 text-gray-800' :
+                          event.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
+                          event.status === 'finalized' ? 'bg-green-100 text-green-800' :
+                          'bg-gray-200 text-gray-600'
+                        }`}>
+                          {event.status === 'in_progress' ? 'In Progress' : 
+                           event.status === 'finalized' ? 'Finalized' :
+                           event.status === 'archived' ? 'Archived' : 'Draft'}
+                        </span>
+                      )}
+                      {event.userId !== currentUser?.uid && (
+                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                          Assigned
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <p className="text-gray-600 mb-2">{event.type}</p>
+                  {event.venueName && (
+                    <p className="text-sm text-gray-500 mb-2">
+                      📍 {event.venueName}
+                    </p>
+                  )}
                   <p className="text-sm text-gray-500 mb-2">
                     {event.date.toDate().toLocaleDateString()}
                   </p>
@@ -360,6 +403,18 @@ export default function DashboardPage() {
                     <option value="School">School</option>
                     <option value="Mitzvah">Mitzvah</option>
                   </select>
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900">
+                    Venue Name (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={newEvent.venueName}
+                    onChange={(e) => setNewEvent({ ...newEvent, venueName: e.target.value })}
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
+                    placeholder="e.g., Grand Ballroom"
+                  />
                 </div>
                 {(userRole === 'admin' || userRole === 'client') && allDJs.length > 0 && (
                   <div>
