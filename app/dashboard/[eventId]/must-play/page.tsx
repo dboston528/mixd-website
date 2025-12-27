@@ -5,7 +5,7 @@ import ProtectedRoute from '../../../../components/ProtectedRoute';
 import DashboardNav from '../../../../components/dashboard/DashboardNav';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove, Timestamp } from 'firebase/firestore';
 import { db } from '../../../../lib/firebase';
 import { useAuth } from '../../../../contexts/AuthContext';
 import { addSong, deleteSong, findSongByTitleAndArtist } from '../../../../lib/db/eventSongs';
@@ -88,6 +88,7 @@ export default function MustPlayPage() {
       // Write to array first (primary source of truth in Phase 1)
       await updateDoc(eventRef, {
         mustPlayList: arrayUnion(songData),
+        updatedAt: Timestamp.now(),
       });
       
       // Dual-write to subcollection (additive, fire-and-forget if it fails)
@@ -110,6 +111,7 @@ export default function MustPlayPage() {
         });
         await updateDoc(eventRef, {
           mustPlayList: arrayUnion(songDataWithSubcollectionId),
+          updatedAt: Timestamp.now(),
         });
       } catch (subcollectionError) {
         // Log error but don't fail the operation (arrays are source of truth in Phase 1)
@@ -150,6 +152,7 @@ export default function MustPlayPage() {
           };
           await updateDoc(doc(db, 'events', eventId), {
             mustPlayList: [songDataWithSubcollectionId],
+            updatedAt: Timestamp.now(),
           });
         } catch (subcollectionError) {
           console.error('Error writing to subcollection (non-critical):', subcollectionError);
@@ -170,6 +173,7 @@ export default function MustPlayPage() {
       // Remove from array first (primary source of truth)
       await updateDoc(eventRef, {
         mustPlayList: arrayRemove(songToRemove),
+        updatedAt: Timestamp.now(),
       });
       
       // Also delete from subcollection
