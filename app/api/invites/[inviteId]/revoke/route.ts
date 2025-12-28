@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '../../../../../../lib/firebase-admin';
-import { verifyAuthToken, canAccessEvent } from '../../../../../../lib/api-auth';
+import { adminDb } from '../../../../../lib/firebase-admin';
+import { verifyAuthToken, canAccessEvent } from '../../../../../lib/api-auth';
 
 /**
  * POST /api/invites/[inviteId]/revoke - Revoke an invite

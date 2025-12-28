@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '../../../../lib/firebase-admin';
-import { verifyAuthToken, canAccessEvent } from '../../../../lib/api-auth';
-import { generateToken, hashToken } from '../../../../lib/invites';
+import { adminDb } from '../../../lib/firebase-admin';
+import { verifyAuthToken, canAccessEvent } from '../../../lib/api-auth';
+import { generateToken, hashToken } from '../../../lib/invites';
 import { Timestamp } from 'firebase-admin/firestore';
 
 /**

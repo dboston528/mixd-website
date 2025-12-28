@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminDb } from '../../../../../lib/firebase-admin';
-import { hashToken, validateTokenHash } from '../../../../../lib/invites';
+import { adminDb } from '../../../../lib/firebase-admin';
+import { hashToken, validateTokenHash } from '../../../../lib/invites';
 
 /**
  * GET /api/invites/validate?token=[token] - Validate an invite token
