@@ -1,61 +1,114 @@
 'use client';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { collection, addDoc, Timestamp, doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 
 export default function RequestSongPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const eventId = params.eventId as string;
+  const token = searchParams.get('token');
   const [formData, setFormData] = useState({
     songTitle: '',
     artist: '',
     guestName: '',
   });
   const [loading, setLoading] = useState(false);
+  const [validating, setValidating] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [eventName, setEventName] = useState('');
 
   useEffect(() => {
-    // Load event name if possible
-    const loadEvent = async () => {
+    // Validate token and load event info
+    const validateAndLoad = async () => {
+      if (!token) {
+        setError('Invalid or missing invite token. Please use the invite link provided to you.');
+        setValidating(false);
+        return;
+      }
+
       try {
-        const eventRef = doc(db, 'events', eventId);
-        const eventSnap = await getDoc(eventRef);
-        if (eventSnap.exists()) {
-          setEventName(eventSnap.data().name || '');
+        // Validate token
+        const validateResponse = await fetch(`/api/invites/validate?token=${encodeURIComponent(token)}`);
+        const validateData = await validateResponse.json();
+
+        if (!validateData.valid) {
+          setError(validateData.error || 'Invalid or expired invite token.');
+          setValidating(false);
+          return;
         }
+
+        // Token is valid, set event name
+        if (validateData.eventName) {
+          setEventName(validateData.eventName);
+        } else {
+          // Fallback: try to load from Firestore (may fail due to security rules)
+          try {
+            const eventRef = doc(db, 'events', eventId);
+            const eventSnap = await getDoc(eventRef);
+            if (eventSnap.exists()) {
+              setEventName(eventSnap.data().name || '');
+            }
+          } catch (error) {
+            // Non-critical, continue without event name
+            console.error('Error loading event:', error);
+          }
+        }
+
+        setValidating(false);
       } catch (error) {
-        console.error('Error loading event:', error);
+        console.error('Error validating token:', error);
+        setError('Failed to validate invite token. Please try again.');
+        setValidating(false);
       }
     };
-    if (eventId) {
-      loadEvent();
+
+    if (eventId && token) {
+      validateAndLoad();
+    } else if (!token) {
+      setError('Invalid or missing invite token. Please use the invite link provided to you.');
+      setValidating(false);
     }
-  }, [eventId]);
+  }, [eventId, token]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
+    if (!token) {
+      setError('Missing invite token');
+      setLoading(false);
+      return;
+    }
+
     try {
-      await addDoc(collection(db, 'songRequests'), {
-        eventId: eventId,
-        songTitle: formData.songTitle,
-        artist: formData.artist,
-        guestName: formData.guestName,
-        status: 'pending',
-        timestamp: Timestamp.now(),
+      const response = await fetch('/api/guest/song-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+          songTitle: formData.songTitle,
+          artist: formData.artist,
+          guestName: formData.guestName,
+        }),
       });
-      
-      setSubmitted(true);
-      setFormData({ songTitle: '', artist: '', guestName: '' });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ songTitle: '', artist: '', guestName: '' });
+      } else {
+        setError(data.error || 'Failed to submit request');
+      }
     } catch (err: any) {
-      setError(err.message || 'Failed to submit request');
+      setError('Network error. Please try again.');
+      console.error('Error submitting request:', err);
     } finally {
       setLoading(false);
     }
@@ -78,6 +131,39 @@ export default function RequestSongPage() {
             >
               Submit Another Request
             </button>
+          </div>
+        </div>
+        <Footer></Footer>
+      </div>
+    );
+  }
+
+  if (validating) {
+    return (
+      <div className="bg-white min-h-screen flex flex-col">
+        <Navbar></Navbar>
+        <div className="flex-grow flex items-center justify-center px-4 py-12">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600"></div>
+            <p className="mt-4 text-gray-600">Validating invite...</p>
+          </div>
+        </div>
+        <Footer></Footer>
+      </div>
+    );
+  }
+
+  if (error && !token) {
+    return (
+      <div className="bg-white min-h-screen flex flex-col">
+        <Navbar></Navbar>
+        <div className="flex-grow flex items-center justify-center px-4 py-12">
+          <div className="text-center max-w-md">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Invalid Invite</h1>
+            <p className="text-gray-600 mb-6">{error}</p>
+            <p className="text-sm text-gray-500">
+              Please contact the event organizer for a valid invite link.
+            </p>
           </div>
         </div>
         <Footer></Footer>

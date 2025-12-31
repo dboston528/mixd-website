@@ -85,18 +85,33 @@ function isEventMember(eventId) {
     }
     
     // Song Requests: 
-    // - Anyone can create (for guest requests)
+    // - Only Admin SDK can create (via API with token validation)
     // - Only event owners, assigned DJs, and admins can read/update
     match /songRequests/{requestId} {
-      allow create: if request.resource.data.eventId is string &&
-        request.resource.data.songTitle is string &&
-        request.resource.data.artist is string &&
-        request.resource.data.guestName is string &&
-        request.resource.data.status == 'pending';
+      allow create: if false; // Guests no longer write directly - only Admin SDK via API
       allow read: if isAuthenticated() && canAccessEvent(resource.data.eventId);
       allow update: if isAuthenticated() && 
         canAccessEvent(resource.data.eventId) &&
         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']);
+    }
+    
+    // Invites: Token-based guest access
+    match /invites/{inviteId} {
+      // Only authenticated users can read their event's invites
+      allow read: if isAuthenticated() && 
+        canAccessEvent(resource.data.eventId);
+      // Only event owners/DJs/admins can create invites
+      allow create: if isAuthenticated() && 
+        canAccessEvent(request.resource.data.eventId) &&
+        request.resource.data.tokenHash is string &&
+        request.resource.data.eventId is string &&
+        request.resource.data.createdBy == request.auth.uid;
+      // Only event owners/DJs/admins can update (revoke, track usage)
+      allow update: if isAuthenticated() && 
+        canAccessEvent(resource.data.eventId) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['revoked', 'useCount', 'lastUsedAt']);
+      // No delete (use revocation instead)
+      allow delete: if false;
     }
     
     // Timeline Items: Access based on event access

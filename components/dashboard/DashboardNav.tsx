@@ -51,6 +51,7 @@ export default function DashboardNav({ eventId }: { eventId: string }) {
     { name: 'Must Play', href: `/dashboard/${eventId}/must-play` },
     { name: 'Do Not Play', href: `/dashboard/${eventId}/do-not-play` },
     { name: 'Song Requests', href: `/dashboard/${eventId}/requests` },
+    { name: 'Invites', href: `/dashboard/${eventId}/invites` },
     { name: 'Timeline', href: `/dashboard/${eventId}/timeline` },
   ];
 
