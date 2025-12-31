@@ -13,7 +13,7 @@ const pricetable = () => {
             <h3 className="mb-4 text-2xl font-semibold">Bronzeville Package</h3>
             <hr></hr>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$1,499</span>
+              <span className="mr-2 text-5xl font-extrabold">$1,899</span>
             </div>
             {/* <!-- List --> */}
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -31,7 +31,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span> 5 hours of music</span>
+                <span> Professional DJ (Reception only)
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -47,7 +48,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>Two premium speaker system setups</span>
+                <span>Up to 5 hours
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -63,7 +65,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span> Wireless handheld microphone</span>
+                <span> Planning consultation
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -79,7 +82,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span> MC Sevices</span>
+                <span> Professional sound system
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -95,7 +99,7 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>Music-Planning Consultation</span>
+                <span>Dance floor lighting or Uplights</span>
               </li>
             </ul>
             <a
@@ -110,10 +114,10 @@ const pricetable = () => {
             <h3 className="mb-4 text-2xl font-semibold">Gold Coast Package</h3>
             <hr></hr>
             <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-              Most Popular *
-            </p>
+            Most Poupular!
+           </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$1,995</span>
+              <span className="mr-2 text-5xl font-extrabold">$2,400</span>
             </div>
             {/* <!-- List --> */}
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -131,7 +135,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>Everything in Bronzeville Package plus:</span>
+                <span>Lead DJ + Professional MC
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -147,7 +152,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>Text Song Request</span>
+                <span>Ceremony sound
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -163,7 +169,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span> Additional 2 hours of Music/MC Services</span>
+                <span>Reception entertainment (up to 6 hours)
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -179,7 +186,43 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>4 up-lights</span>
+                <span>Timeline & vendor coordination
+                </span>
+              </li>
+              <li className="flex items-center space-x-3">
+                {/* <!-- Icon --> */}
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span>Stress Free Planning
+
+                </span>
+              </li>
+              <li className="flex items-center space-x-3">
+                {/* <!-- Icon --> */}
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span>Seamless Timeline
+                </span>
               </li>
             </ul>
             <a
@@ -193,9 +236,13 @@ const pricetable = () => {
           <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h3 className="mb-4 text-2xl font-semibold">Mag Mile Package</h3>
             <hr></hr>
+            <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            Premium, all-inclusive celebration
+            </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$2,200</span>
+              <span className="mr-2 text-5xl font-extrabold">$3,100</span>
             </div>
+
             {/* <!-- List --> */}
             <ul role="list" className="mb-8 space-y-4 text-left">
               <li className="flex items-center space-x-3">
@@ -212,7 +259,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>Everything in the Gold Coast Package plus:</span>
+                <span>Lead DJ + Professional MC
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -228,7 +276,8 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span> 6 additional up-lights</span>
+                <span> Ceremony + reception
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 {/* <!-- Icon --> */}
@@ -244,7 +293,43 @@ const pricetable = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span>Dance floor lighting</span>
+                <span>Up to 7–8 hours
+                </span>
+              </li>
+              <li className="flex items-center space-x-3">
+                {/* <!-- Icon --> */}
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span>Social media recap content
+
+                </span>
+              </li>
+              <li className="flex items-center space-x-3">
+                {/* <!-- Icon --> */}
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span>Priority planning & customization
+                </span>
               </li>
             </ul>
             <a
