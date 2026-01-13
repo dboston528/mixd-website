@@ -87,7 +87,7 @@ export default function RequestSongPage() {
     }
 
     try {
-      const response = await fetch('/api/guest/song-request', {
+      const response = await fetch('/api/guest/suggest-song', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
