@@ -63,7 +63,7 @@ const footer = () => {
           <Footer.Copyright
             by="MIXD Entertainment Group"
             href="#"
-            year={2024}
+            year={2026}
           />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon
