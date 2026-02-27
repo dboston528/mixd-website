@@ -68,7 +68,7 @@ export default function Page() {
             </p>
           </Card>
 
-          <Card
+          {/* <Card
             className="max-w-sm w-full"
             imgAlt="Image of DJ Guice"
             imgSrc="https://ui-avatars.com/api/?name=DJ+Guice&size=400&background=14b8a6&color=fff&bold=true"
@@ -79,9 +79,9 @@ export default function Page() {
             <p className="font-normal text-gray-700 dark:text-gray-400">
               DJ
             </p>
-          </Card>
+          </Card> */}
 
-          <Card
+          {/* <Card
             className="max-w-sm w-full"
             imgAlt="Image of DJ Troy"
             imgSrc="https://ui-avatars.com/api/?name=DJ+Troy&size=400&background=14b8a6&color=fff&bold=true"
@@ -92,7 +92,7 @@ export default function Page() {
             <p className="font-normal text-gray-700 dark:text-gray-400">
               DJ
             </p>
-          </Card>
+          </Card> */}
         </div>
       </div>
       <Footer></Footer>
