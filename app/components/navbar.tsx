@@ -8,7 +8,7 @@ const NavbarMenu = () => {
   const { currentUser } = useAuth();
   
   return (
-    <div>
+    <div className="sticky top-0 z-50 bg-white">
       <Navbar>
         <Navbar.Brand href="/">
           <img
