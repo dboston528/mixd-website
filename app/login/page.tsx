@@ -123,7 +123,7 @@ export default function Page() {
                 <span className="mx-3 text-xs uppercase tracking-wide text-gray-500">or continue with</span>
                 <span className="flex-grow border-t border-gray-200"></span>
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="flex justify-center">
                 <button
                   type="button"
                   onClick={() => handleSocialLogin('google')}
