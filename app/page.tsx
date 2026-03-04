@@ -148,83 +148,72 @@ export default function Home() {
         </Card>
       </div> */}
 
-      <div className="hero-image">
-        <div className="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-md rounded-3xl p-10 md:p-14 shadow-2xl border border-white/20 space-y-6">
-          <div className="inline-flex items-center gap-3 mx-auto px-5 py-2 rounded-full bg-white/20 text-sm uppercase tracking-[0.2em] text-gray-100">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-            Trusted Event Partners
-          </div>
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <span className="inline-block mb-3 text-sm font-semibold uppercase tracking-widest text-teal-600">
+            Why MIXD
+          </span>
+          <h2 className="text-4xl font-extrabold text-gray-900 mb-4 md:text-5xl">
             Why Choose Us?
-          </h1>
-          <div className="grid gap-6 text-left text-gray-100/90 md:grid-cols-3">
+          </h2>
+          <p className="text-lg text-gray-500 mb-14 max-w-2xl mx-auto">
+            We don't just play music — we create moments that last a lifetime.
+          </p>
+          <div className="grid gap-8 md:grid-cols-3 text-left">
             {[
               {
                 title: 'Seasoned DJs',
-                copy:
-                  'Hundreds of weddings, mitzvahs, and galas give us the instincts to read any crowd.',
+                copy: 'Hundreds of weddings, mitzvahs, and galas give us the instincts to read any crowd.',
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+                  </svg>
+                ),
               },
               {
                 title: 'White-Glove Service',
-                copy:
-                  'From planning calls to showtime, our team handles every detail with polish.',
+                copy: 'From planning calls to showtime, our team handles every detail with polish.',
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                  </svg>
+                ),
               },
               {
                 title: 'Client-First Approach',
-                copy:
-                  'We build playlists with you so the soundtrack feels personal and unforgettable.',
+                copy: 'We build playlists with you so the soundtrack feels personal and unforgettable.',
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-6 w-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                ),
               },
-            ].map(({ title, copy }) => (
+            ].map(({ title, copy, icon }) => (
               <div
                 key={title}
-                className="group rounded-2xl border border-white/20 bg-white/5 p-6 shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white/15 hover:shadow-xl"
+                className="rounded-2xl border border-gray-100 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-400/20 text-teal-200 group-hover:bg-teal-400/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+                  {icon}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold text-white">
-                  {title}
-                </h3>
-                <p className="text-base">{copy}</p>
+                <h3 className="mb-2 text-xl font-semibold text-gray-900">{title}</h3>
+                <p className="text-gray-500 leading-relaxed">{copy}</p>
               </div>
             ))}
           </div>
-          <a
-            href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
-            className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-teal-500/90 hover:bg-teal-400 focus:ring-4 focus:ring-teal-300 rounded-2xl transition-colors duration-200"
-          >
-            Request Pricing
-            <svg
-              className="w-3.5 h-3.5 ml-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
+          <div className="mt-14">
+            <a
+              href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
+              className="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white bg-teal-600 hover:bg-teal-700 rounded-xl transition-colors duration-200 shadow-sm"
             >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </a>
+              Request Pricing
+              <svg className="w-3.5 h-3.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+              </svg>
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
       <Footer></Footer>
     </main>
   );
