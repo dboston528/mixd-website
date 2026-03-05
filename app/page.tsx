@@ -63,63 +63,92 @@ export default function Home() {
       </div>
       {/* Services Section */}
 
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-extrabold text-center md:text-5xl lg:text-6xl mb-8 text-gray-900 dark:text-white">
-            Our Services
-          </h2>
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="inline-block mb-3 text-sm font-semibold uppercase tracking-widest text-teal-600">
+              What We Do
+            </span>
+            <h2 className="text-4xl font-extrabold text-gray-900 md:text-5xl">
+              Our Services
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {/* Weddings */}
-            <Link href="/weddings" className="relative block rounded-xl overflow-hidden group">
+            <Link href="/weddings" className="relative block rounded-2xl overflow-hidden group h-80 shadow-sm hover:shadow-lg transition-shadow duration-300">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751726915/IMG_8699_1_cmj2iz.jpg"
                 alt="Weddings"
-                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
-              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
-                Weddings
-              </h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+                <h3 className="text-white text-xl font-semibold">Weddings</h3>
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 text-sm font-medium">
+                  Explore
+                  <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                  </svg>
+                </span>
+              </div>
             </Link>
 
             {/* Private Events */}
-            <Link href="/private-events" className="relative block rounded-xl overflow-hidden group">
+            <Link href="/private-events" className="relative block rounded-2xl overflow-hidden group h-80 shadow-sm hover:shadow-lg transition-shadow duration-300">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751943492/IMG_0966_2_wlq7ec.jpg"
                 alt="Private Events"
-                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
-              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
-                Private Events
-              </h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+                <h3 className="text-white text-xl font-semibold">Private Events</h3>
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 text-sm font-medium">
+                  Explore
+                  <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                  </svg>
+                </span>
+              </div>
             </Link>
 
             {/* Schools */}
-            <Link href="/schools" className="relative block rounded-xl overflow-hidden group">
+            <Link href="/schools" className="relative block rounded-2xl overflow-hidden group h-80 shadow-sm hover:shadow-lg transition-shadow duration-300">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751861791/school_thumbnail_wtevmr.jpg"
                 alt="Schools"
-                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
-              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
-                Schools
-              </h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+                <h3 className="text-white text-xl font-semibold">Schools</h3>
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 text-sm font-medium">
+                  Explore
+                  <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                  </svg>
+                </span>
+              </div>
             </Link>
 
             {/* Mitzvah's */}
-            <Link href="/mitzvahs" className="relative block rounded-xl overflow-hidden group">
+            <Link href="/mitzvahs" className="relative block rounded-2xl overflow-hidden group h-80 shadow-sm hover:shadow-lg transition-shadow duration-300">
               <img
                 src="https://res.cloudinary.com/he5g3ml0o/image/upload/v1751944013/IMG_0B3FFFD98443-1_aut1ug.jpg"
                 alt="Mitzvah's"
-                className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition duration-500"></div>
-              <h3 className="absolute inset-0 flex items-center justify-center text-white text-2xl font-semibold">
-                Mitzvah's
-              </h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+                <h3 className="text-white text-xl font-semibold">Mitzvah's</h3>
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 text-sm font-medium">
+                  Explore
+                  <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                  </svg>
+                </span>
+              </div>
             </Link>
           </div>
         </div>
