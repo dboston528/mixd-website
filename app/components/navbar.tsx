@@ -46,14 +46,12 @@ const NavbarMenu = () => {
               Login
             </Navbar.Link>
           )}
-          <a
-            href="https://www.honeybook.com/widget/mixd_chicago_271581/cf_id/65c528b2b9e21200253deb54"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
             className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-teal-600 text-white font-medium text-center hover:!bg-teal-700 hover:!text-white focus:ring-4 focus:ring-teal-300 transition-all duration-200 whitespace-nowrap"
           >
             Contact Us
-          </a>
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
