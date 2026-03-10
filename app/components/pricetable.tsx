@@ -7,7 +7,7 @@ const CheckIcon = () => (
 const packages = [
   {
     name: "Bronzeville Package",
-    price: "$1,899",
+    price: "$1,800",
     tag: null,
     featured: false,
     items: [
