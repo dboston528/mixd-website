@@ -60,7 +60,13 @@ function isEventMember(eventId) {
     match /users/{userId} {
       allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
       allow create: if isAuthenticated() && request.auth.uid == userId;
-      allow update: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      // Users can update their own doc but cannot change their own role.
+      // Only admins can change the role field.
+      allow update: if isAuthenticated() && (
+        (request.auth.uid == userId &&
+         !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role'])) ||
+        isAdmin()
+      );
     }
     
     // Events: Owners, assigned DJs, and admins can access

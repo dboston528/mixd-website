@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('Error submitting song request:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to submit request', message: error.message },
+      { success: false, error: 'Failed to submit request' },
       { status: 500 }
     );
   }

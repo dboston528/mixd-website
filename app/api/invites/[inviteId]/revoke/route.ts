@@ -60,7 +60,7 @@ export async function POST(
   } catch (error: any) {
     console.error('Error revoking invite:', error);
     return NextResponse.json(
-      { error: 'Failed to revoke invite', message: error.message },
+      { error: 'Failed to revoke invite' },
       { status: 500 }
     );
   }

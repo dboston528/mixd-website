@@ -14,5 +14,6 @@ export interface Event {
   status?: EventStatus;
   venueName?: string;
   updatedAt?: Timestamp;
+  heroImageUrl?: string;
 }
 

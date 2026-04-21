@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('Error creating invite:', error);
     return NextResponse.json(
-      { error: 'Failed to create invite', message: error.message },
+      { error: 'Failed to create invite' },
       { status: 500 }
     );
   }
@@ -140,7 +140,7 @@ export async function GET(request: NextRequest) {
   } catch (error: any) {
     console.error('Error listing invites:', error);
     return NextResponse.json(
-      { error: 'Failed to list invites', message: error.message },
+      { error: 'Failed to list invites' },
       { status: 500 }
     );
   }

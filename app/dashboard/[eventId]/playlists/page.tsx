@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../lib/firebase';
 import SpotifyImport from '../../../../components/SpotifyImport';
+import EventHero from '../../../../components/dashboard/EventHero';
 
 interface Song {
   id: string;
@@ -131,7 +132,8 @@ export default function PlaylistsPage() {
     <ProtectedRoute>
       <div className="bg-white min-h-screen flex flex-col">
         <Navbar></Navbar>
-        
+        <EventHero eventId={eventId} />
+
         <div className="container mx-auto px-4 py-12 flex-grow">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-4xl font-extrabold text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

@@ -15,6 +15,7 @@ declare module 'spotify-web-api-node' {
     getUserPlaylists(): Promise<any>;
     getPlaylist(id: string): Promise<any>;
     getPlaylistTracks(id: string, options?: Record<string, any>): Promise<any>;
+    searchTracks(query: string, options?: Record<string, any>): Promise<any>;
   }
 
   export default SpotifyWebApi;

@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('Error submitting song suggestion:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to submit suggestion', message: error.message },
+      { success: false, error: 'Failed to submit suggestion' },
       { status: 500 }
     );
   }
