@@ -1,6 +1,15 @@
-"use client";
+import type { Metadata } from "next";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+
+export const metadata: Metadata = {
+  title: "About Us | Meet the Team",
+  description:
+    "Meet the DJs and MCs behind MIXD Entertainment. With over 15 years of combined experience, our Chicago-based team brings energy, professionalism, and passion to every event.",
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 const team = [
   {

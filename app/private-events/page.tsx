@@ -1,6 +1,28 @@
-'use client'
+import type { Metadata } from 'next';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+
+export const metadata: Metadata = {
+  title: 'Private Event DJ Services in Chicago',
+  description:
+    'DJ entertainment for birthday parties, anniversaries, and corporate events in Chicago. MIXD Entertainment brings professional sound, lighting, and custom playlists to your private celebration.',
+  alternates: {
+    canonical: '/private-events',
+  },
+  openGraph: {
+    title: 'Private Event DJ Services in Chicago | MIXD Entertainment',
+    description:
+      'DJ entertainment for birthday parties, anniversaries, and corporate events in Chicago with professional sound, lighting, and custom playlists.',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/he5g3ml0o/image/upload/c_fill,w_1200,h_630/v1751943492/IMG_0966_2_wlq7ec.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MIXD Entertainment private event DJ services',
+      },
+    ],
+  },
+};
 
 const ArrowIcon = () => (
   <svg className="w-3.5 h-3.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

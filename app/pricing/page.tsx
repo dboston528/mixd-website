@@ -1,7 +1,16 @@
-'use client'
+import type { Metadata } from 'next';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Price from '../components/pricetable'
+
+export const metadata: Metadata = {
+  title: 'DJ Pricing & Packages',
+  description:
+    'Simple, transparent DJ pricing for Chicago weddings and events. Compare MIXD Entertainment packages including professional DJ, MC services, ceremony sound, and lighting.',
+  alternates: {
+    canonical: '/pricing',
+  },
+};
 export default function Page() {
   return (
     <div className="bg-white">

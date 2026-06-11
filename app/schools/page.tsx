@@ -1,6 +1,28 @@
-'use client'
+import type { Metadata } from 'next';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+
+export const metadata: Metadata = {
+  title: 'School Dance & Event DJ Services in Chicago',
+  description:
+    'High-energy, age-appropriate DJ entertainment for proms, homecomings, graduations, and school dances in Chicago. MIXD Entertainment works with administrators to deliver safe, memorable events.',
+  alternates: {
+    canonical: '/schools',
+  },
+  openGraph: {
+    title: 'School Dance & Event DJ Services in Chicago | MIXD Entertainment',
+    description:
+      'High-energy, age-appropriate DJ entertainment for proms, homecomings, graduations, and school dances in Chicago.',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/he5g3ml0o/image/upload/c_fill,w_1200,h_630/v1751861791/school_thumbnail_wtevmr.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MIXD Entertainment school event DJ services',
+      },
+    ],
+  },
+};
 
 const ArrowIcon = () => (
   <svg className="w-3.5 h-3.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

@@ -1,7 +1,16 @@
-'use client'
+import type { Metadata } from 'next';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import HoneyBookForm from '../components/honeybookform';
+
+export const metadata: Metadata = {
+  title: 'Contact Us | Request Pricing',
+  description:
+    'Ready to book a DJ for your Chicago wedding or event? Contact MIXD Entertainment for availability and pricing. We respond quickly with a custom quote for your celebration.',
+  alternates: {
+    canonical: '/contact',
+  },
+};
 
 export default function Page() {
   return (

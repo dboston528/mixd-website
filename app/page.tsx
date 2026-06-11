@@ -1,13 +1,48 @@
-"use client";
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Card, DarkThemeToggle, Flowbite } from "flowbite-react";
 import Footer from "../app/components/footer";
 import Navbar from "./components/navbar";
+import InstagramFeed from "./components/instagram-feed";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "../lib/site";
+
+export const metadata: Metadata = {
+  description:
+    "MIXD Entertainment delivers professional DJ and MC services for weddings, mitzvahs, school dances, and private events in Chicago. 15+ years of experience keeping your event flowing and your guests dancing.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EntertainmentBusiness",
+  name: SITE_NAME,
+  alternateName: "MIXD Entertainment Group",
+  url: SITE_URL,
+  image: DEFAULT_OG_IMAGE,
+  description:
+    "Professional DJ and MC services for weddings, mitzvahs, school dances, and private events in Chicago.",
+  areaServed: {
+    "@type": "City",
+    name: "Chicago",
+  },
+  sameAs: ["https://www.instagram.com/mixd_chicago"],
+  knowsAbout: [
+    "Wedding DJ services",
+    "Bar and Bat Mitzvah entertainment",
+    "School dance DJ services",
+    "Private event entertainment",
+    "MC services",
+  ],
+};
 
 export default function Home() {
   return (
     <main className="flex  flex-col  justify-between">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <Navbar />
 
       <div className="relative w-full h-screen overflow-hidden">
@@ -243,6 +278,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Instagram Feed */}
+      <InstagramFeed />
+
       <Footer></Footer>
     </main>
   );

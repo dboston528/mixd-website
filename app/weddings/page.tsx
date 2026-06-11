@@ -1,6 +1,28 @@
-'use client'
+import type { Metadata } from 'next';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+
+export const metadata: Metadata = {
+  title: 'Wedding DJ Services in Chicago',
+  description:
+    'Professional wedding DJ and MC services in Chicago: ceremony music, cocktail hour, reception entertainment, and custom playlists. Make your wedding day unforgettable with MIXD Entertainment.',
+  alternates: {
+    canonical: '/weddings',
+  },
+  openGraph: {
+    title: 'Wedding DJ Services in Chicago | MIXD Entertainment',
+    description:
+      'Professional wedding DJ and MC services in Chicago: ceremony music, cocktail hour, reception entertainment, and custom playlists.',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/he5g3ml0o/image/upload/c_fill,w_1200,h_630/v1751726915/IMG_8699_1_cmj2iz.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MIXD Entertainment wedding DJ services',
+      },
+    ],
+  },
+};
 
 const ArrowIcon = () => (
   <svg className="w-3.5 h-3.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

@@ -1,6 +1,28 @@
-'use client'
+import type { Metadata } from 'next';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+
+export const metadata: Metadata = {
+  title: 'Bar & Bat Mitzvah DJ Services in Chicago',
+  description:
+    'Celebrate your bar or bat mitzvah with MIXD Entertainment. High-energy DJs, interactive MCs, games, and music that keeps every generation on the dance floor in Chicago.',
+  alternates: {
+    canonical: '/mitzvahs',
+  },
+  openGraph: {
+    title: 'Bar & Bat Mitzvah DJ Services in Chicago | MIXD Entertainment',
+    description:
+      'High-energy DJs, interactive MCs, games, and music that keeps every generation on the dance floor.',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/he5g3ml0o/image/upload/c_fill,w_1200,h_630/v1751944013/IMG_0B3FFFD98443-1_aut1ug.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MIXD Entertainment mitzvah DJ services',
+      },
+    ],
+  },
+};
 
 const ArrowIcon = () => (
   <svg className="w-3.5 h-3.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

@@ -1,7 +1,15 @@
-"use client";
+import type { Metadata } from "next";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import { Card } from "flowbite-react";
+
+export const metadata: Metadata = {
+  title: "Wedding Entertainment Brochure",
+  description:
+    "Browse the MIXD Entertainment wedding brochure to see our DJ packages, services, and what to expect when you book us for your Chicago wedding.",
+  alternates: {
+    canonical: "/brochure",
+  },
+};
 
 export default function Page() {
   return (
